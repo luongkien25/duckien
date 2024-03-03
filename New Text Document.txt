@@ -48,3 +48,132 @@ int main() {
     return 0;
 }
 23.
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
+int main()
+{
+    int a, b;
+    cin >> a >> b;
+
+    int max = (a + b + abs(a - b)) / 2;
+    cout << "So lon hon trong hai so la: " << max << endl;
+    return 0;
+}
+24.
+#include <iostream>
+using namespace std;
+
+
+int daysInMonth(int month, int year)
+{
+    switch (month)
+    {
+    case 1:
+    case 3:
+    case 5:
+    case 7:
+    case 8:
+    case 10:
+    case 12:
+        return 31;
+    case 4:
+    case 6:
+    case 9:
+    case 11:
+        return 30;
+    case 2:
+        if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0))
+            return 29;
+        else
+            return 28;
+    default:
+        return -1;
+    }
+}
+
+bool isValidDate(int day, int month, int year)
+{
+    if (year < 1 || month < 1 || month > 12 || day < 1)
+        return false;
+    int days = daysInMonth(month, year);
+    if (days == -1 || day > days)
+        return false;
+    return true;
+}
+
+int dayOfWeek(int day, int month, int year)
+{
+    if (month < 3)
+    {
+        month += 12;
+        year--;
+    }
+    int k = year % 100;
+    int j = year / 100;
+    int h = (day + 13 * (month + 1) / 5 + k + k / 4 + j / 4 + 5 * j) % 7;
+    return h;
+}
+
+int main()
+{
+    int day, month, year;
+    cout << "Nhap ngay, thang, nam: ";
+    cin >> day >> month >> year;
+    if (!isValidDate(day, month, year))
+    {
+        cout << "Ngay, thang, nam khong hop le!" << endl;
+        return 0;
+    }
+    int h = dayOfWeek(day, month, year);
+    switch (h)
+    {
+    case 0:
+        cout << "Saturday" << endl;
+        break;
+    case 1:
+        cout << "Sunday" << endl;
+        break;
+    case 2:
+        cout << "Monday" << endl;
+        break;
+    case 3:
+        cout << "Tuesday" << endl;
+        break;
+    case 4:
+        cout << "Wednesday" << endl;
+        break;
+    case 5:
+        cout << "Thursday" << endl;
+        break;
+    case 6:
+        cout << "Friday" << endl;
+        break;
+    }
+    return 0;
+}
+25.
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int a, b, c, d, e;
+    cout << "Nhap 5 so: ";
+    cin >> a >> b >> c >> d >> e;
+    if (a > b)
+        swap(a, b);
+    if (c > d)
+        swap(c, d);
+    if (a > c)
+        swap(a, c);
+    if (b > d)
+        swap(b, d);
+    if (b > c)
+        swap(b, c);
+    if (c > e)
+        swap(c, e);
+    cout  << c << endl; 
+    return 0;
+}

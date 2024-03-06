@@ -1,0 +1,202 @@
+1.B
+2.D
+3.C
+4.B
+5.D
+6.B
+7.C
+8.A,B,C
+9.C
+10.B
+11.C
+12.A
+13.B
+14.
+15.B
+16.C
+17.C
+18.D
+19.C
+20.B
+C.
+5.
+#include <iostream>
+using namespace std;
+string read1(int a){
+    string b;
+    switch(a){
+    case 0:
+        b="";
+        break;
+    case 1:
+        b="one";
+        break;
+    case 2:
+        b="two";
+        break;
+    case 3:
+        b="three";
+        break;
+    case 4:
+        b="four";
+        break;
+    case 5:
+        b="five";
+        break;
+    case 6:
+        b="six";
+        break;
+    case 7:
+        b="seven";
+        break;
+    case 8:
+        b="eight";
+        break;
+    case 9:
+        b="nine";
+        break;
+    }
+    return b;
+}
+string read3(string a){
+    string b;
+    int num1=stoi(a);
+    int num2=num1%100;
+    int hundreds=(num1-num2)/100;
+    int num3=num2%10;
+    int tens=(num2-num3)/10;
+    if(tens==0){
+        b=read1(num2);
+    }
+    else if(tens==1){
+        switch (num2){
+            case 10:
+                b="ten";
+                break;
+            case 11:
+                b="eleven";
+                break;
+            case 12:
+                b="twelve";
+                break;
+            case 13:
+                b="thirteen";
+                break;
+            case 14:
+                b="fourteen";
+                break;
+            case 15:
+                b="fifteen";
+                break;
+            case 16:
+                b="sixteen";
+                break;
+            case 17:
+                b="seventeen";
+                break;
+            case 18:
+                b="eighteen";
+                break;
+            case '19':
+                b="nineteen";
+                break;
+        }
+
+    }
+    else{
+
+        if(tens==2){
+            b="twenty "+read1(num3);
+        }
+        else if(tens==3){
+            b="thirdty "+read1(num3);
+        }
+        else if(tens==5){
+            b="fifty "+read1(num3);
+        }
+        else if(tens==8){
+            b="eighty "+read1(num3);
+        }
+        else{
+            b=read1(tens)+"ty "+read1(num3);
+        }
+
+        b=read1(hundreds)+" "+"hundred "+"and "+b;
+    }
+    return b;
+}
+string converttoe(string a){
+    string b="";
+    if(a[0]=='-'){
+        b="negative";
+        a=a.substr(1);
+    }
+    int length=a.length();
+    if(length<=3){
+        b=b+read3(a);
+    }
+    else if(length<=6){
+        int c1=length-3;
+        string base1=a.substr(0,c1);
+        string base2=a.substr(c1,3);
+        b=b+read3(base1)+" thounsand "+read3(base2);
+    }
+    else{
+        int c1=length-6;
+        int c2=length-3;
+        string base1=a.substr(0,c1);
+        string base2=a.substr(c1,3);
+        string base3=a.substr(c2,3);
+        b=b+read3(base1)+" million "+read3(base2)+" thounsand "+read3(base3);
+    }
+    return b;
+}
+int main()
+{
+    string a;
+    cin>>a;
+    cout<<converttoe(a);
+    return 0;
+}
+6.
+#include <iostream>
+using namespace std;
+
+int main() {
+  int n; 
+  cin >> n; 
+  int matrix[10-0][1000];  
+  for (int i = 0; i < n; i++) { 
+    for (int j = 0; j < n; j++) { 
+      matrix[i][j] = (i + j) % n + 1; // công thức tính phần tử tại vị trí (i, j)
+    }
+  }
+  for (int i = 0; i < n; i++) { 
+    for (int j = 0; j < n; j++) { 
+      cout << matrix[i][j] << " "; 
+    }
+    cout << endl; 
+  }
+  return 0; 
+}
+7.
+#include <iostream>
+using namespace std;
+
+int main() {
+    int prev, curr;
+    cin >> prev;
+    cout << prev<<" ";
+    while (true) {
+        cin.ignore >> curr;
+        if (curr < 0) break;
+        if (curr != prev) {
+            cout << curr << " ";
+            prev = curr;
+        }
+    }
+    cout << curr << endl;
+    return 0;
+}
+8.
+9.

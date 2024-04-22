@@ -1,0 +1,57 @@
+1.
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+char* concat(const char* str1, const char* str2) {
+    int size= strlen(str1) + strlen(str2) + 1; 
+    char* result= new char[size];
+    strcpy(result, str1);
+    strcat(result, str2);
+    return result;
+}
+
+int main() {
+    const char* str1= "Hello";
+    const char* str2= "World";
+    char* a = concat(str1, str2);
+    cout << a << endl;
+    delete[] a;
+
+    return 0;
+}
+
+2. 
+ int* p = new int;
+ int* p2 = p;
+ *p = 10;
+ delete p; 
+*p2 = 100; // lỗi sử dụng con trỏ p sau khi đã giải phóng
+ cout << *p2;
+ delete p2;
+3. 
+ char* a = new char[10];
+char* c = a + 3;
+for (int i = 0; i < 9; i++) a[i] = 'a'; 
+a[9] = '\0';
+cerr <<"a: " << "-" << a << "-" << endl;
+cerr <<"c: " << "-" << c << "-" << endl;
+delete c;
+// Lỗi: giải phóng bộ nhớ không phải là con trỏ ban đầu được cấp phát
+cerr << "a after deleting c:" << "-" << a << "-" << endl;
+4.
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int p1 = 22; 
+    int* ptr = &p1;
+
+    cout << *ptr << endl;
+    delete ptr; 	
+    cout << *ptr;
+    return 0;
+}
+//lỗi chạy quá thời gian và không xác định được giá trị của biến địa phương
+
